@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CA Saurabh Sembekar | Chartered Accountant Services</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --primary: #1f4f8b;
+            --primary-dark: #15355f;
+            --accent: #f4b000;
+            --bg-light: #f5f7fb;
+            --text-main: #1f2933;
+            --text-muted: #6b7280;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-main);
+            background: #ffffff;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* Top bar */
+        .topbar {
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+            color: #ffffff;
+            padding: 10px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-block { display: flex; flex-direction: column; }
+
+        .brand-name {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .brand-tagline { font-size: 12px; opacity: 0.9; }
+
+        .top-contact { font-size: 12px; text-align: right; }
+        .top-contact span { margin-left: 12px; }
+
+        /* Navigation */
+        .nav {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 10px 28px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            font-size: 14px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            padding-bottom: 2px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-dark);
+            border-color: var(--primary);
+        }
+
+        .nav-cta {
+            font-size: 13px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--primary);
+            color: var(--primary-dark);
+            background: #f9fafb;
+        }
+
+        /* Hero */
+        .hero {
+            background: radial-gradient(circle at top left, #e8f1ff, #ffffff);
+            padding: 38px 16px 42px;
+        }
+
+        .hero-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            font-size: 11px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: #edf2ff;
+            color: var(--primary-dark);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            padding: 9px 16px;
+            border-radius: 999px;
+            border: none;
+            background: var(--primary);
+            color: #ffffff;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover { background: var(--primary-dark); }
+
+        .btn-outline {
+            padding: 9px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--primary);
+            background: #ffffff;
+            color: var(--primary);
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .hero-note { font-size: 12px; color: var(--text-muted); }
+
+        .hero-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.18);
+            padding: 18px 18px 16px;
+        }
+
+        .hero-card-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+        .hero-card-subtitle { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+
+        .hero-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0 0 6px;
+            font-size: 12px;
+        }
+        .hero-list li { margin-bottom: 4px; }
+
+        .hero-stat { font-size: 11px; color: var(--text-muted); margin-top: 10px; }
+
+        /* Profile image */
+        .profile-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        .profile-photo {
+            width: 210px;
+            height: 210px;
+            object-fit: cover;
+            border-radius: 14px;
+            box-shadow: 0 14px 30px rgba(15,23,42,0.35);
+            border: 3px solid #ffffff;
+            background: #111827;
+        }
+
+        .profile-wrapper-small {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .profile-photo-small {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 999px;
+            box-shadow: 0 10px 24px rgba(15,23,42,0.30);
+            border: 3px solid #ffffff;
+            background: #111827;
+        }
+
+        /* Sections */
+        section { padding: 32px 16px; }
+
+        .section-inner { max-width: 1120px; margin: 0 auto; }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--primary-dark);
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+        }
+
+        .service-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 14px 14px 12px;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: box-shadow 0.15s ease, transform 0.15s ease;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .service-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .service-body { font-size: 12px; color: var(--text-muted); }
+
+        /* About */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 24px;
+        }
+
+        .about-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .about-box {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 14px 14px 12px;
+            border: 1px solid #e5e7eb;
+            font-size: 12px;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .testimonial-card {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            padding: 14px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .testimonial-name { font-weight: 600; color: var(--text-main); margin-top: 6px; }
+        .testimonial-role { font-size: 11px; color: #9ca3af; }
+
+        /* Contact */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 24px;
+        }
+
+        .contact-form {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            padding: 16px 14px 14px;
+        }
+
+        .form-row { margin-bottom: 10px; }
+        .form-row label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+
+        .form-row input,
+        .form-row textarea {
+            width: 100%;
+            padding: 8px 9px;
+            font-size: 13px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            outline: none;
+        }
+
+        .form-row input:focus,
+        .form-row textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+        }
+
+        .form-row textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .contact-info {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .contact-info strong { color: var(--text-main); }
+
+        .footer {
+            border-top: 1px solid #e5e7eb;
+            padding: 12px 16px;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Popup enquiry modal */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(15,23,42,0.45);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+        }
+
+        .modal {
+            background: #ffffff;
+            border-radius: 14px;
+            max-width: 420px;
+            width: 90%;
+            padding: 16px 16px 14px;
+            box-shadow: 0 20px 45px rgba(15,23,42,0.35);
+        }
+
+        .modal-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+        .modal-subtitle { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+
+        .modal-actions {
+            margin-top: 10px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .btn-secondary {
+            padding: 7px 12px;
+            border-radius: 999px;
+            border: 1px solid #d1d5db;
+            background: #ffffff;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 840px) {
+            .hero-inner,
+            .about-layout,
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+            .profile-wrapper {
+                margin-top: 18px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+            .nav-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="brand-block">
+        <div class="brand-name">CA SAURABH SEMBEKAR</div>
+        <div class="brand-tagline">Chartered Accountant · Tax, Audit & Advisory Services</div>
+    </div>
+    <div class="top-contact">
+        <span>Email: saurabhsembekar1899@gmail.com</span>
+        <span>Phone: +91-9131444712</span>
+    </div>
+</header>
+
+<nav class="nav">
+    <div class="nav-inner">
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <a href="#contact" class="nav-cta">Request a consultation</a>
+    </div>
+</nav>
+
+<section id="home" class="hero">
+    <div class="hero-inner">
+        <div>
+            <div class="hero-title">Trusted Chartered Accountant for Businesses & Individuals</div>
+            <div class="hero-subtitle">
+                Structured tax planning, accurate compliance and proactive advisory to help you focus on growth
+                while your finances stay fully compliant.
+            </div>
+
+            <div class="hero-badges">
+                <span class="badge">Income Tax & GST</span>
+                <span class="badge">Audit & Assurance</span>
+                <span class="badge">Business Setup & ROC</span>
+                <span class="badge">Virtual CFO</span>
+            </div>
+
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">
+                    Book a consultation
+                </button>
+            </div>
+
+            <div class="hero-note">
+                Quick response within 24 hours on working days. Online and in‑person consultations available.
+            </div>
+        </div>
+
+        <div>
+            <div class="profile-wrapper">
+                <img src="saurabhimage.jpg" alt="CA Saurabh Sembekar" class="profile-photo">
+            </div>
+
+            <div class="hero-card">
+                <div class="hero-card-title">Focus areas</div>
+                <div class="hero-card-subtitle">
+                    Designed for SMEs, startups, professionals, and salaried individuals.
+                </div>
+                <ul class="hero-list">
+                    <li>✔ Tax planning & filing for Individuals, Firms and Companies</li>
+                    <li>✔ Statutory, Internal and Tax Audits</li>
+                    <li>✔ GST registration, returns and assessments</li>
+                    <li>✔ Company/LLP formation and ROC compliance</li>
+                    <li>✔ Management reporting and Virtual CFO services</li>
+                </ul>
+                <div class="hero-stat">
+                    Seamless support through email, phone and secured document sharing.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services">
+    <div class="section-inner">
+        <div class="section-title">Services</div>
+        <div class="section-subtitle">
+            Click a service to share your details and receive a WhatsApp response.
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card" onclick="openServiceEnquiry('Tax Planning & Return Filing')">
+                <div class="service-title">Tax Planning & Return Filing</div>
+                <div class="service-body">
+                    Income tax planning and filing for salaried individuals, professionals, firms and companies,
+                    including capital gains and TDS advisory.
+                </div>
+            </div>
+            <div class="service-card" onclick="openServiceEnquiry('GST Registration & Compliance')">
+                <div class="service-title">GST Registration & Compliance</div>
+                <div class="service-body">
+                    GST registration, monthly/quarterly returns, reconciliations and assistance during
+                    GST notices and departmental queries.
+                </div>
+            </div>
+            <div class="service-card" onclick="openServiceEnquiry('Audit & Assurance')">
+                <div class="service-title">Audit & Assurance</div>
+                <div class="service-body">
+                    Statutory audit, tax audit, internal audit and special purpose reviews to strengthen controls
+                    and ensure regulatory compliance.
+                </div>
+            </div>
+            <div class="service-card" onclick="openServiceEnquiry('Business Setup & ROC Filing')">
+                <div class="service-title">Business Setup & ROC Filing</div>
+                <div class="service-body">
+                    Incorporation of Company, LLP, Partnership and related ROC filings, share capital changes and
+                    annual returns.
+                </div>
+            </div>
+            <div class="service-card" onclick="openServiceEnquiry('Accounting & MIS Reporting')">
+                <div class="service-title">Accounting & MIS Reporting</div>
+                <div class="service-body">
+                    End‑to‑end bookkeeping, monthly closing, MIS reports, and assistance with accounting systems
+                    and controls.
+                </div>
+            </div>
+            <div class="service-card" onclick="openServiceEnquiry('Virtual CFO & Advisory')">
+                <div class="service-title">Virtual CFO & Advisory</div>
+                <div class="service-body">
+                    Financial forecasting, cash‑flow planning, profitability analysis and board‑level reporting
+                    for growing businesses.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" style="background: var(--bg-light);">
+    <div class="section-inner">
+        <div class="section-title">About CA Saurabh Sembekar</div>
+        <div class="section-subtitle">
+            Building long‑term relationships through accurate advice, transparent communication and strong ethics.
+        </div>
+
+        <div class="about-layout">
+            <div class="about-text">
+                CA Saurabh Sembekar is a practising Chartered Accountant focusing on tax, audit and business
+                advisory services for SMEs, professionals and individuals. Engagements are handled with a
+                partner‑driven approach so that every client receives direct attention and practical solutions.<br><br>
+                Assignments are executed using modern tools for documentation, secure data sharing and status
+                tracking, so that compliance remains smooth and deadlines are not missed.
+            </div>
+            <div>
+                <div class="profile-wrapper-small">
+                    <img src="saurabhimage.jpg" alt="CA Saurabh Sembekar" class="profile-photo-small">
+                </div>
+                <div class="about-box">
+                    <strong>Why clients prefer the practice</strong><br><br>
+                    • Clear explanation of complex tax and regulatory points.<br>
+                    • On‑time delivery and proactive reminder system for due dates.<br>
+                    • Structured documentation to handle scrutiny and assessments.<br>
+                    • Flexible online meetings for out‑station clients.<br>
+                    • Coordinated support with bankers, legal advisors and management teams.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="testimonials">
+    <div class="section-inner">
+        <div class="section-title">Client feedback</div>
+        <div class="section-subtitle">
+            A snapshot of how businesses and individuals experience the services.
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                “Our company migrated GST and income tax compliance to CA Saurabh Sembekar.
+                Filing is now timely and we receive clear MIS for management decisions.”
+                <div class="testimonial-name">Owner, Manufacturing SME</div>
+                <div class="testimonial-role">GST & Tax Compliance</div>
+            </div>
+            <div class="testimonial-card">
+                “As a working professional, I needed help with salary, equity investments and rental income.
+                My returns are now planned to optimise tax and stay fully compliant.”
+                <div class="testimonial-name">Senior IT Professional</div>
+                <div class="testimonial-role">Individual Tax Planning</div>
+            </div>
+            <div class="testimonial-card">
+                “From incorporation to regular ROC and tax filings, the firm has guided us on every step.
+                The virtual CFO review helps us understand our numbers better.”
+                <div class="testimonial-name">Founder, Startup</div>
+                <div class="testimonial-role">Startup Advisory & Virtual CFO</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" style="background: var(--bg-light);">
+    <div class="section-inner">
+        <div class="section-title">Contact</div>
+        <div class="section-subtitle">
+            Share your requirement and you will receive a response with suitable appointment slots.
+        </div>
+
+        <div class="contact-layout">
+            <div class="contact-form">
+                <div class="form-row">
+                    <label for="name">Name</label>
+                    <input id="name" type="text" placeholder="Your full name">
+                </div>
+                <div class="form-row">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" placeholder="you@example.com">
+                </div>
+                <div class="form-row">
+                    <label for="phone">Phone</label>
+                    <input id="phone" type="text" placeholder="+91-XXXXXXXXXX">
+                </div>
+                <div class="form-row">
+                    <label for="service">Service requirement</label>
+                    <input id="service" type="text" placeholder="e.g. GST registration, company audit, ITR filing">
+                </div>
+                <div class="form-row">
+                    <label for="message">Brief details</label>
+                    <textarea id="message" placeholder="Write a short summary of your query or business."></textarea>
+                </div>
+                <button class="btn-primary" type="button"
+                        onclick="openWhatsAppFromMainForm()">
+                    Submit enquiry via WhatsApp
+                </button>
+                <div style="margin-top:8px;font-size:11px;color:var(--text-muted);">
+                    This opens WhatsApp with your details pre‑filled to +91&nbsp;9131444712.
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <p><strong>Office address</strong><br>
+                    2nd Floor, Business Centre,<br>
+                    Main Road, City, State, PIN.
+                </p>
+                <p><strong>Email</strong><br>
+                    saurabhsembekar1899@gmail.com
+                </p>
+                <p><strong>Phone / WhatsApp</strong><br>
+                    +91-9131444712
+                </p>
+                <p><strong>Office hours</strong><br>
+                    Monday to Saturday, 10:00 AM – 7:00 PM
+                </p>
+                <p style="font-size:11px;color:var(--text-muted);">
+                    You can embed a Google Map here once the exact location is final.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    © <span id="year"></span> CA Saurabh Sembekar · Chartered Accountant Services
+</footer>
+
+<!-- Service enquiry modal -->
+<div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+        <div class="modal-title" id="modalServiceTitle">Service enquiry</div>
+        <div class="modal-subtitle">
+            Enter your details and WhatsApp will open with this information pre‑filled.
+        </div>
+
+        <div class="form-row">
+            <label for="modalName">Name</label>
+            <input id="modalName" type="text" placeholder="Your full name">
+        </div>
+        <div class="form-row">
+            <label for="modalPhone">Contact number</label>
+            <input id="modalPhone" type="text" placeholder="+91-XXXXXXXXXX">
+        </div>
+        <div class="form-row">
+            <label for="modalDetails">Service needed / brief details</label>
+            <textarea id="modalDetails" placeholder="Short note about your requirement"></textarea>
+        </div>
+
+        <div class="modal-actions">
+            <button class="btn-secondary" type="button" onclick="closeServiceEnquiry()">Cancel</button>
+            <button class="btn-primary" type="button" onclick="submitServiceEnquiry()">
+                Send on WhatsApp
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const WHATSAPP_NUMBER = "919131444712"; // country code + number
+
+    // Service cards -> popup
+    let currentService = "";
+
+    function openServiceEnquiry(serviceName) {
+        currentService = serviceName;
+        document.getElementById('modalServiceTitle').textContent =
+            serviceName + " – enquiry";
+        document.getElementById('modalName').value = "";
+        document.getElementById('modalPhone').value = "";
+        document.getElementById('modalDetails').value = "";
+        document.getElementById('modalBackdrop').style.display = "flex";
+    }
+
+    function closeServiceEnquiry() {
+        document.getElementById('modalBackdrop').style.display = "none";
+    }
+
+    function submitServiceEnquiry() {
+        const name = document.getElementById('modalName').value.trim();
+        const phone = document.getElementById('modalPhone').value.trim();
+        const details = document.getElementById('modalDetails').value.trim();
+
+        if (!name || !phone) {
+            alert("Please fill your name and contact number.");
+            return;
+        }
+
+        const text =
+            "New enquiry for *" + currentService + "*%0A" +
+            "Name: " + encodeURIComponent(name) + "%0A" +
+            "Contact: " + encodeURIComponent(phone) + "%0A" +
+            "Details: " + encodeURIComponent(details || "-");
+
+        const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + text;
+        window.open(url, "_blank");
+        closeServiceEnquiry();
+    }
+
+    // Main contact form -> WhatsApp
+    function openWhatsAppFromMainForm() {
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const service = document.getElementById('service').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !phone) {
+            alert("Please fill your name and contact number.");
+            return;
+        }
+
+        const text =
+            "Website contact form enquiry%0A" +
+            "Name: " + encodeURIComponent(name) + "%0A" +
+            "Phone: " + encodeURIComponent(phone) + "%0A" +
+            "Email: " + encodeURIComponent(email || "-") + "%0A" +
+            "Service: " + encodeURIComponent(service || "-") + "%0A" +
+            "Details: " + encodeURIComponent(message || "-");
+
+        const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + text;
+        window.open(url, "_blank");
+    }
+</script>
+</body>
+</html>
